@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../Components/Header'
 import BgRemovalSteps from '../Components/BgRemovalSteps'
+import BgSlider from '../Components/BgSlider'
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
        
         <Header/>
         <BgRemovalSteps/>
+        <BgSlider/>
 
       
       

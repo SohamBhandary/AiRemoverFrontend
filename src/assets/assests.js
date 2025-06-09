@@ -25,3 +25,5 @@ export const assets={
         description: `After selecting a new background color, download you photo and you're done! You can also save you picture in the Photoroom App by creating an account`
     }
 ];
+
+export const categories =["People","Product","Animals","Cars","Graphics"]
