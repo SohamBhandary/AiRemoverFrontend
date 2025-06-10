@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../Components/Header'
 import BgRemovalSteps from '../Components/BgRemovalSteps'
 import BgSlider from '../Components/BgSlider'
+import Pricing from '../Components/Pricing'
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
         <Header/>
         <BgRemovalSteps/>
         <BgSlider/>
+        <Pricing/>
 
       
       

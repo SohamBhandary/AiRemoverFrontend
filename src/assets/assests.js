@@ -31,3 +31,31 @@ export const assets={
 ];
 
 export const categories =["People","Product","Animals","Cars","Graphics"]
+export const plans = [
+    {
+        id: "Basic",
+        name: "Basic Package",
+        price: "499",
+        credits: "100 Credits",
+        description: "Best for personal use",
+        popular: false
+    },
+
+    {
+        id: "Premium",
+        name: "Premium Package",
+        price: 899,
+        credits: "250 Credits",
+        description: "Best for business use",
+        popular: true
+    }, 
+
+    {
+        id: "Ultimate",
+        name: "Ultimate Package",
+        price: 1499,
+        credits: "1000 Credits",
+        description: "Best for enterprise use",
+        popular: false
+    }
+];
