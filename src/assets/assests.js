@@ -59,3 +59,23 @@ export const plans = [
         popular: false
     }
 ];
+ export const  testimonials = [
+    {
+        id: 1,
+        quote: "We are impressed by the AI and think it's the best choice on the market.",
+        author: "Sadhik Binginapalli",
+        handle: "@_sadhik_"
+    },
+    {
+        id: 2,
+        quote: "remove.bg is leaps and bounds ahead of the competition. A thousand times better. It simplified the whhole process",
+        author: "Rushi Kaja",
+        handle: "@rushi_kn"
+    },
+    {
+        id: 3,
+        quote: "We were inpressed by its abiltiy to account for pesky, feathery hair without making an image look jagged and amateurish",
+        author: "Ranga Sai",
+        handle: "@ranga_sai"
+    }
+];

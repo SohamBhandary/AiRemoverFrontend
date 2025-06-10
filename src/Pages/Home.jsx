@@ -3,6 +3,7 @@ import Header from '../Components/Header'
 import BgRemovalSteps from '../Components/BgRemovalSteps'
 import BgSlider from '../Components/BgSlider'
 import Pricing from '../Components/Pricing'
+import Testimonials from '../Components/Testimonials'
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <BgRemovalSteps/>
         <BgSlider/>
         <Pricing/>
+        <Testimonials/>
 
       
       
