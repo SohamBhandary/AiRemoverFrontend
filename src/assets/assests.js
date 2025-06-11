@@ -79,3 +79,18 @@ export const plans = [
         handle: "@ranga_sai"
     }
 ];
+
+ export const footerConstants = [
+    {
+        url: "https://github.com/jayasai-gorre/",
+        logo: "https://img.icons8.com/fluent/300/github.png"
+    },
+    {
+        url: "http://linkedin.com/in/jayasai-gorre",
+        logo: "https://img.icons8.com/fluent/300/linkedin-2.png"
+    },
+    {
+        url: "https://www.instagram.com/__jayasai__/",
+        logo: "https://img.icons8.com/fluent/300/instagram-new.png"
+    }
+]
