@@ -4,6 +4,7 @@ import BgRemovalSteps from '../Components/BgRemovalSteps'
 import BgSlider from '../Components/BgSlider'
 import Pricing from '../Components/Pricing'
 import Testimonials from '../Components/Testimonials'
+import Trynow from '../Components/Trynow'
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
         <BgSlider/>
         <Pricing/>
         <Testimonials/>
+        <Trynow/>
 
       
       
