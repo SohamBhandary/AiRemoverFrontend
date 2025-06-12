@@ -2,9 +2,20 @@ import React, { useState } from 'react';
 import { X, Menu } from 'lucide-react'; 
 import { assets } from "../assets/assests.js";
 import { Link } from 'react-router-dom';
+import { SignedIn, SignedOut, useClerk, UserButton } from '@clerk/clerk-react';
 
 function Menubar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const{openSignIn,openSignUp} =useClerk();
+  const openRegister=()=>{
+    setMenuOpen(false);
+    openSignUp({});
+  }
+  const openLogin=()=>{
+    setMenuOpen(false);
+    openSignIn({});
+
+  }
 
   return (
     <nav className='bg-white px-8 py-4 flex justify-between items-center relative'>
@@ -25,10 +36,15 @@ function Menubar() {
 
       {/* Desktop Buttons */}
       <div className='hidden md:flex items-center space-x-4'>
-        <button className="text-gray-700 hover:text-blue-500 font-medium">Login</button>
-        <button className='bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium px-4 py-2 transition-all bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium px-4 py-2 rounded-full text-center'>
+        <SignedOut>
+          <button className="text-gray-700 hover:text-blue-500 font-medium" onClick={openLogin}>Login</button>
+        <button className='bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium px-4 py-2 transition-all bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium px-4 py-2 rounded-full text-center' onClick={openRegister}>
           Signup
         </button>
+        </SignedOut>
+        <SignedIn>
+          <UserButton/>
+        </SignedIn>
       </div>
 
       {/* Mobile Hamburger Icon */}
@@ -41,12 +57,31 @@ function Menubar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className='absolute top-16 right-8 bg-white shadow-md rounded-md flex flex-col space-y-4 w-40 p-4'>
-          <button className=' hover:bg-gray-200 text-blue-700 font-medium px-4 py-2 rounded-full text-center'>
+          <SignedOut>
+            <button className=' hover:bg-gray-200 text-blue-700 font-medium px-4 py-2 rounded-full text-center' onClick={openLogin}>
             Login
           </button>
-          <button className='bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium px-4 py-2 rounded-full text-center'>
+          <button className='bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium px-4 py-2 rounded-full text-center'onClick={openRegister}>
             Signup
           </button>
+          </SignedOut>
+          <SignedIn>
+            <div className="flex items-center gap-2 sm:gap-3">
+                        <button onClick={() => navigate("/pricing")} className="flex items-center gap-2 bg-blue-100 px-4 sm:px-5 py-1.5 sm:py-2.5 rounded-full hover:scale-105 transition-all duration-500 cursor-pointer">
+                            <img src={assets.credits} alt="credits" height={24} width={24}/>
+                            <p className="text-xs sm:text-sm font-medium text-gray-600">
+                                Credits:  { credit }
+                            </p>
+                        </button>
+
+                        <p className="text-gray-600 max-sm:hidden">
+                            Hi, { user ? user.fullName : "User"}
+                        </p>
+                    </div>
+            <UserButton/>
+          </SignedIn>
+
+          
         </div>
       )}
 
