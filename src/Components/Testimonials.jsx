@@ -11,7 +11,7 @@ const Testimonials = () => {
         </h2>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
             {testimonials.map((testimonial)=>(
-                <div  key={testimonial} className='flex flex-col max-w-md mx-auto md:mx-0 justify-between rounded-xl shadow hover:shadow-lg'>
+                <div  key={testimonial.id} className='flex flex-col max-w-md mx-auto md:mx-0 justify-between rounded-xl shadow hover:shadow-lg'>
                     <div className='flex flex-col px-6 pt-8 mb-10 space-y-5'>
                         <svg
                                 width="24"
