@@ -124,7 +124,7 @@ const MenuBar = () => {
                   width={24}
                 />
                 <p className="text-xs sm:text-sm font-medium text-gray-600">
-                  Credits: {credit ?? '...'}
+                  Credits: {credits ?? '...'}
                 </p>
               </div>
 

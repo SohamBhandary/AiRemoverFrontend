@@ -12,6 +12,8 @@ const AppContextProvider = ({ children }) => {
   const [credits, setCredit] = useState(null); // ✅ fix: default null
   const { getToken } = useAuth();
   const { user } = useUser(); // get the current Clerk user
+  const[image,setImage]=useState(false);
+  const[resultImage,setResultImage]=useState(false);
 
   const loadUserCredits = async () => {
     try {
@@ -63,6 +65,8 @@ const AppContextProvider = ({ children }) => {
     setCredit,
     backendUrl,
     loadUserCredits,
+    setImage,
+    setResultImage
   };
 
   return (
