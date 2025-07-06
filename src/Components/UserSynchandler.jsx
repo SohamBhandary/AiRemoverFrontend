@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import axios from "axios";
 
 const UserSynchandler = () => {
-   const { isLoaded, isSignedIn } = useAuth(); // removed getToken
+   const { isLoaded, isSignedIn, getToken } = useAuth(); // ✅ include getToken
    const { user } = useUser();
    const [synced, setSynced] = useState(false);
    const { backendUrl, loadUserCredits } = useContext(AppContext);
@@ -15,21 +15,27 @@ const UserSynchandler = () => {
          if (!isLoaded || !isSignedIn || synced) return;
 
          try {
+            const token = await getToken(); // ✅ Get Clerk JWT
+
             const userData = {
                clerkId: user.id,
                email: user.primaryEmailAddress.emailAddress,
                firstName: user.firstName,
                lastName: user.lastName,
-               photoUrl:user.imageUrl
-
+               photoUrl: user.imageUrl
             };
 
-            // ✅ No token sent here — it’s public
-            await axios.post(`${backendUrl}/users`, userData);
+            await axios.post(
+               `${backendUrl}/users`,
+               userData,
+               {
+                  headers: {
+                     Authorization: `Bearer ${token}` // ✅ Send token
+                  }
+               }
+            );
 
-            // ✅ Now load credits (protected route)
             await loadUserCredits();
-
             setSynced(true);
          } catch (err) {
             console.error("User synchronization failed", err);

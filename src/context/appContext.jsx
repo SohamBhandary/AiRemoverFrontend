@@ -1,8 +1,9 @@
-import { useAuth, useUser } from "@clerk/clerk-react";
+import { useAuth, useClerk, useUser } from "@clerk/clerk-react";
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import React from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext();
 
@@ -12,8 +13,11 @@ const AppContextProvider = ({ children }) => {
   const [credits, setCredit] = useState(null); // ✅ fix: default null
   const { getToken } = useAuth();
   const { user } = useUser(); // get the current Clerk user
-  const[image,setImage]=useState(false);
+  const[image,setImage]=useState(true);
   const[resultImage,setResultImage]=useState(false);
+  const{isSignedIn}=useUser();
+  const{openSignIn}=useClerk();
+ const navigate =useNavigate();
 
   const loadUserCredits = async () => {
     try {
@@ -32,13 +36,13 @@ const AppContextProvider = ({ children }) => {
     }
   };
 
-  // ✅ fix: create user on backend and load credits when user is available
+
   useEffect(() => {
     const initUser = async () => {
       try {
         const token = await getToken();
 
-        // Call backend to ensure user is created with default credits
+        
         await axios.post(
           `${backendUrl}/users`,
           {},
@@ -58,15 +62,47 @@ const AppContextProvider = ({ children }) => {
     if (user) {
       initUser();
     }
-  }, [user]); // re-run when user logs in or signs up
+  }, [user]); 
+
+  const removeBg=async(selectedImage)=>{
+    try{
+      if(!isSignedIn){
+        return openSignIn();
+      }
+      setImage(selectedImage);
+      setResultImage(false);
+      navigate("/result");
+    const token=await getToken();
+    const formData=new FormData();
+    selectedImage && formData.append("file",selectedImage);
+   const { data: base64Image } = await axios.post(
+  `${backendUrl}/images/remove-background`,
+  formData,
+  { headers: { Authorization: `Bearer ${token}` } }
+);
+
+// ✅ FIX: Add "data:image/png;base64," prefix here:
+setResultImage(`data:image/png;base64,${base64Image}`);
+    setCredit(credits-1)
+    }catch(error){
+      console.log(error);
+      toast.error("Error loading credits")
+      
+
+
+    }
+  }
 
   const contextValue = {
     credits,
     setCredit,
     backendUrl,
     loadUserCredits,
+    image,
     setImage,
-    setResultImage
+    resultImage,
+    setResultImage,
+    removeBg
   };
 
   return (
