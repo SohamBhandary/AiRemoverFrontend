@@ -53,7 +53,7 @@ const Result = () => {
                 resultImage && (
                     <div className="flex justify-center sm:justify-end items-center flex-wrap gap-4 mt-6">
                         <button className="border text-indigo-600 font-semibold py-2 px-4 rounded-full text-lg hover:scale-105 transition-all duration-300 cursor-pointer" 
-                        onClick={() => navigate("/")}
+                        
                         >
                             Try another image
                         </button>
