@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext();
 
-const AppContextProvider = ({ children }) => {
+const appContext = ({ children }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const [credits, setCredit] = useState(null); // ✅ fix: default null
@@ -112,4 +112,4 @@ setResultImage(`data:image/png;base64,${base64Image}`);
   );
 };
 
-export default AppContextProvider;
+export default appContext;
