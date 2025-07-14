@@ -8,6 +8,7 @@ import UserSynchandler from './Components/UserSynchandler';
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/clerk-react';
 import Result from './Pages/Result';
 
+
 const App = () => {
   return (
     <>
@@ -17,6 +18,7 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
+          
 
         <Route
           path="/result"

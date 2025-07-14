@@ -34,6 +34,12 @@ const initializePayment = ({order, getToken, onSuccess, backendUrl}) => {
         name: "Credit Payment",
         order_id: order.id,
         receipt: order.receipt,
+         method: {
+        upi: true,
+        card: true,
+        netbanking: true,
+        wallet: true
+    },
 
 
         handler: async (paymentDetails) => {
